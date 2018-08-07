@@ -1,0 +1,102 @@
+html,body,h1,h2,h3,h4,h5,p,div,a,ul,li,section{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+
+/* Basic layout */
+/* Ignore this */
+section{
+	margin:20px 0;
+	padding:20px 0;
+	clear:both;
+	border-bottom:1px solid rgb(200,200,200);
+}
+header{
+	margin:20px 0;
+}
+
+body{
+		background: rgb(255,251,238);
+
+}
+
+
+.container .canvas{
+	margin-left:10%;
+	margin-right:10%;
+	height: 8000px;
+
+}
+
+.smallPlot{
+    width:33%;
+    height:200px;
+    position: relative;
+    float:left;
+    background: blue;
+    border: solid 1px white;
+}
+
+.multAxis{
+  font-family: 'Helvetica Neue';
+  font-size:.8em;
+  font-weight:200;
+  fill:rgb(75,75,75);
+  stroke:none;
+}
+
+
+
+.container.canvas.circles{
+	color:red;
+}
+
+.axis .tick line{
+    stroke:rgb(100,100,100);
+    stroke-width:1px;
+  }
+
+
+/*.domain{
+    fill:none;
+}
+*/
+.labels{
+	font-family:'helvetica', sans-serif;
+	font-size:6px;
+}
+
+.btn{
+	border: solid rgb(48,55,67) 1px;
+	width: auto;
+	color:rgb(48,55,67) ;
+	padding:5px 5px 5px 5px;
+	font-family:sans-serif;
+	margin:3px 3px 3px 3px;
+	position:relative;
+	float:left;
+	margin-top:1%;
+	text-decoration:none;
+}
+
+.btn:hover{
+	background-color:rgb(208,215,227);
+	text-decoration:none;
+}
+
+.btn:active{
+	background-color:rgb(48,55,67);
+	color:rgb(254,254,254);
+	text-decoration:none;
+}
+
+.btn:focus{
+	background-color:rgb(48,55,67);
+	color:rgb(254,254,254);
+	text-decoration:none;
+	outline:none;
+}
+
+
