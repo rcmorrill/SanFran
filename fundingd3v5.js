@@ -5,53 +5,23 @@ var width = document.getElementById('plot').clientWidth-margin.l-margin.r,
 	height = document.getElementById('plot').clientHeight-margin.t-margin.b;
 
 
+d3.select('#same').classed('hide',true);
+
+
 var plot = d3.select('.canvas')
 	.append('svg')
 	.attr('width',width+margin.l+margin.r)
 	.attr('height',height+margin.t+margin.b)
 	.append('g')
 	.attr('class','plot')
-	.attr('transform', 'translate ('+width/2+','+height*.05+')');
+	.attr('transform', 'translate ('+width/2+','+height*.033+')');
 
 
 
 
-var scaleMoney = d3.scaleSqrt().domain([0,1700000]).range([4,20]);
 
+var scaleMoney = d3.scaleSqrt().domain([0,1700000]).range([.1,20]);
 
-// var scaleD = d3.scaleLinear().domain([1,0]).range([100,400]);
-// var scaleX = d3.scaleLinear().domain([0,12]).range([0,width]);
-// var scaleCX = d3.scaleLinear().domain([0,100]).range([0,width]);
-// var scaleCY= d3.scaleLinear().domain([0,100]).range([height,35]);
-// var scaleI= d3.scaleLinear().domain([1,53]).range([0,width]);
-// var scaleStart=d3.scaleOrdinal().domain([2,1,0]).range([width*.30,width*.5,width*.7])
-
-
-
-		// project: d.ProjectID,
-		// funded: d.AgencyName,
-		// area: d.ProgramArea,
-		// money:+d.Total,
-
-var scaleTypeRow1 = d3.scalePoint().domain([
-'Capital Projects',
-'Community Building and Neighborhood Planning',
-'Housing Development Grants',
-'Organizational Capacity Building',
-'Public Services - Access to Housing',
-'Public Services - Eviction Prevention',
-'Public Services - Financial Counseling Integration Pilot',
-'Public Services - Financial Education',
-'Public Services - Foundational Competencies',
-'Public Services - Homeless Services',
-'Public Services - Housing Place-Based Services',
-'Public Services - Legal Services',
-'Public Services - Neighborhood and Business Coordination',
-'Public Services - Service Connection',
-'Public Services - Supportive Housing for PLWHA',
-'Public Services - Sustainable Homeownership',
-'Public Services - Transitional Housing & Services'])
-.range([width*-.4,width*.5])
 
 
 
@@ -185,7 +155,7 @@ var scaleFunded = d3.scalePoint().domain([
 "Cross Cultural Family Center",
 "Central Market Community Benefit District",
 "San Francisco Beautiful",])
-.range([0,height])
+.range([height*-.015,height])
 
 
 
@@ -193,16 +163,16 @@ var scaleFunded = d3.scalePoint().domain([
 
 
 var scaleAreaX = d3.scaleLinear().domain([1,7])
-.range([width*-.4,width*.4])
+.range([width*-.35,width*.5])
 
 var scaleAreaY = d3.scaleLinear().domain([1,4])
-.range([height*.0,height*.06])
+.range([height*-.02,height*.02])
 
 var scaleDist = d3.scaleLinear().domain([0,1800000])
-.range([width*-.4,width*.4])
+.range([width*-.35,width*.5])
 
 var scaleDist = d3.scaleLinear().domain([0,1800000])
-.range([width*-.4,width*.4])
+.range([width*-.35,width*.5])
 
 
 
@@ -214,15 +184,155 @@ var scaleFunder = d3.scalePoint().domain([
 		'ESG',
 		'SOMA',
 		'Other',])
-.range([width*-.4,width*.4])
+.range([width*-.35,width*.5])
 
-var scaleColor = d3.scaleOrdinal().domain([2,1,3]).range(['rgb(213,34,40','rgb(227,175,37)','rgb(39,43,102)'])
+var scaleColor = d3.scaleOrdinal().domain([2,1,3]).range(['rgb(213,34,40','rgb(230,175,37)','rgb(39,43,102)'])
 
+
+//hard coded = not ideal
+
+plot.append('text')
+        .attr('x',scaleAreaX(.5))
+        .attr('y',scaleAreaY(1.5))
+        .text('Community Building / Planning').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(.8))
+        .attr('y',scaleAreaY(2.5))
+        .text('Capital Projects').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(.8))
+        .attr('y',scaleAreaY(3.5))
+        .text('Access to Housing').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(.8))
+        .attr('y',scaleAreaY(4.5))
+        .text('Legal Services').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(1.5))
+        .attr('y',scaleAreaY(1.5))
+        .text('Organizational Capacity Building').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(1.5))
+        .attr('y',scaleAreaY(2.5))
+        .text('Housing Development Grants').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(1.7))
+        .attr('y',scaleAreaY(3.5))
+        .text('Eviction Prevention').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(1.5))
+        .attr('y',scaleAreaY(4.5))
+        .text('Neighborhood & Business Coord.').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(2.7))
+        .attr('y',scaleAreaY(3.5))
+        .text('Financial Counseling Pilot').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(2.7))
+        .attr('y',scaleAreaY(4.5))
+        .text('Service Connection').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(3.8))
+        .attr('y',scaleAreaY(3.5))
+        .text('Financial Education').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(3.5))
+        .attr('y',scaleAreaY(4.5))
+        .text('Supportive Housing for PLWHA').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(4.5))
+        .attr('y',scaleAreaY(3.5))
+        .text('Foundational Competencies').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(4.5))
+        .attr('y',scaleAreaY(4.5))
+        .text('Sustainable Homeownership').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(5.8))
+        .attr('y',scaleAreaY(3.5))
+        .text('Homeless Services').attr('class','labels programs')
+plot.append('text')
+        .attr('x',scaleAreaX(5.5))
+        .attr('y',scaleAreaY(4.5))
+        .text('Transitional Housing & Services').attr('class','labels programs')
+ plot.append('text')
+        .attr('x',scaleAreaX(6.5))
+        .attr('y',scaleAreaY(3.5))
+        .text('Housing Place-Based Services').attr('class','labels programs')       
+
+
+
+
+//funding source labels
+
+var scaleFunderLabels = d3.scaleLinear().domain([1,7])
+.range([width*-.38,width*.49])
+
+
+
+ plot.append('text')
+        .attr('x',scaleFunderLabels(1))
+        .attr('y',height*.02)
+        .text('General Fund').attr('class','labels funders') 
+
+plot.append('text')
+	    .attr('x',scaleFunderLabels(2))
+	    .attr('y',height*.02)
+	    .text('HOPWA').attr('class','labels funders')        
+
+ plot.append('text')
+        .attr('x',scaleFunderLabels(3))
+        .attr('y',height*.02)
+        .text('Housing Trust Fund').attr('class','labels funders') 
+
+plot.append('text')
+	    .attr('x',scaleFunderLabels(4))
+	    .attr('y',height*.02)
+	    .text('CDBG').attr('class','labels funders')
+
+ plot.append('text')
+        .attr('x',scaleFunderLabels(5))
+        .attr('y',height*.02)
+        .text('ESG').attr('class','labels funders') 
+
+plot.append('text')
+	    .attr('x',scaleFunderLabels(6))
+	    .attr('y',height*.02)
+	    .text('SOMA').attr('class','labels funders')
+
+plot.append('text')
+	    .attr('x',scaleFunderLabels(7))
+	    .attr('y',height*.02)
+	    .text('Other').attr('class','labels funders')
+
+
+d3.selectAll('.labels').classed('hide',true);
+
+
+//initial labels
+
+ plot.append('text')
+        .attr('x',width*.2)
+        .attr('y',height*.005)
+        .text('Public Service')
+        .attr('class','PublicService labels2')
+
+ plot.append('text')
+        .attr('x',width*.2)
+        .attr('y',height*.01)
+        .text('Infrastructure')
+        .attr('class','Infrastructure labels2')
+
+ plot.append('text')
+        .attr('x',width*.2)
+        .attr('y',height*.015)
+        .text('Community Development')
+        .attr('class','CommunityDev labels2')
 
 var simulation1 = d3.forceSimulation()
 	.force('x',d3.forceX().strength(.01))
 	.force('y', d3.forceY().strength(.01))
-	.force('collide', d3.forceCollide(6))
+	.force('collide', d3.forceCollide(5))
 	.velocityDecay(.1)
 	.alpha(.4)
 
@@ -230,12 +340,36 @@ var simulation1 = d3.forceSimulation()
 
 d3.csv('data/funding_breakOut.csv',parse).then(function(data){
 
-console.log(data);
 
-var plotting = plot.selectAll('.nodes')
+
+var histoAxis = d3.axisBottom(scaleDist);
+
+plot.append('g')
+	.attr('class','labels axisHist')
+	.attr('transform', 'translate (0,'+height*.023+')')
+	.call(histoAxis)
+
+plot.selectAll('.lines')
 	.data(data)
 	.enter()
-	.append('circle')
+	.append('rect')
+	.attr('class','labels lines')
+	.attr('x', width*-.5)
+	.attr('y',function(d){return scaleFunded(d.funded)+2})
+	.attr('height',1)
+	.attr('width',width)
+	.attr('fill','rgba(154,154,154,.1')
+
+
+
+
+
+var grouping = plot.selectAll('.nodes')
+	.data(data)
+	.enter()
+	.append('g')
+
+var plotting = grouping.append('circle')
 	.attr('class','nodes')
 	.attr('r',0)
 	.attr('fill',function(d){ return scaleColor(d.type)})
@@ -245,6 +379,23 @@ var plotting = plot.selectAll('.nodes')
 		.attr('stroke',function(d){ return scaleColor(d.type)})})
 
 
+
+var moneyLabel = grouping.append('text')
+	.attr('class','labels moneyLabels')
+	.attr('transform','translate(2,-2)')
+	.text (function(d){return d.money})
+
+
+
+var texting = plot.selectAll('.longLabels')
+	.data(data)
+	.enter()
+	.append('text')
+	.attr('class','labels longLabels')
+	.text(function(d){return d.funded})
+	.attr('x', width*-.5)
+	.attr('y',function(d){return scaleFunded(d.funded)})
+d3.selectAll('.labels').classed('hide',true);
 
 plotting.transition()
  	.duration(500)
@@ -266,12 +417,28 @@ function ticked(){
 		.attr('cy', function(d){
 			return d.y
 		})
+
+    moneyLabel
+		.attr('x', function(d){
+			return d.x
+		})
+		.attr('y', function(d){
+			return d.y
+		})
 }
+
+
+
 
 d3.selectAll('.btn').on('click', function(){
     var selection = d3.select(this).attr('id');
 
-		  if (selection == '0'){
+		  if (selection == 'encode'){
+
+
+			d3.select('#same').classed('hide',false)
+			d3.select('#encode').classed('hide',true)
+
 			plotting.transition().duration(700)
 				.attr('r',function(d){return scaleMoney(d.money)})
 		simulation1
@@ -283,20 +450,31 @@ d3.selectAll('.btn').on('click', function(){
 
 		}
 
-		else if (selection == '0.1'){
+		else if (selection == 'same'){
+
+
+			d3.select('#same').classed('hide',true)
+			d3.select('#encode').classed('hide',false)
+		  	d3.selectAll('.moneyLabels').classed('hide',true)
+
 			plotting.transition()//.duration(700)
-				.attr('r',5)
+				.attr('r',4)
 		simulation1
-			.force('r',null)
-			.force('collide', d3.forceCollide(6))
-			.velocityDecay(.4)
-			.alpha(.6)
+			//.force('r',null)
+			.force('collide', d3.forceCollide(5))
+			.velocityDecay(.5)
+			.alpha(.7)
 			.restart()
+
 
 
 
 		}
 		else if (selection == '1'){
+
+			d3.selectAll('.labels').classed('hide',true)
+		  	d3.selectAll('.programs').classed('hide',false)
+		  	d3.selectAll('.labels2').classed('hide',true)
 
 			simulation1
 			.force('r',null)
@@ -309,19 +487,37 @@ d3.selectAll('.btn').on('click', function(){
 		}
 		else if (selection =='2'){
 
-			simulation1
+			d3.selectAll('.labels').classed('hide',true)
+		    d3.selectAll('.axisHist').classed('hide',false)
+		    d3.selectAll('.labels2').classed('hide',true)
+
+
+			d3.select('#same').classed('hide',true)
+			d3.select('#encode').classed('hide',false)
+			plotting.transition()
+				.attr('r',4)
+		simulation1
+			.force('collide', d3.forceCollide(5))
 			.force('r',null)
-			.force('x',d3.forceX(function(d) {return scaleDist(d.money)}).strength(.7))
+			.force('x',d3.forceX(function(d) {return scaleDist(d.money)}).strength(1))
 			.force('y', d3.forceY().strength(.3))
 			.velocityDecay(.5)
-			.alpha(.2)
+			.alpha(.5)
 			.restart()
 
 		}
 
 		else if (selection =='3'){
 
-			simulation1
+			d3.selectAll('.labels').classed('hide',true)
+		    d3.selectAll('.axisHist').classed('hide',false)
+		    d3.selectAll('.labels2').classed('hide',true)
+			d3.select('#same').classed('hide',true)
+			d3.select('#encode').classed('hide',false)
+			plotting.transition()
+				.attr('r',4)
+		simulation1
+			.force('collide', d3.forceCollide(5))
 			.force('r',null)
 			.force('x',d3.forceX(function(d) {return scaleDist(d.money)}).strength(.7))
 			.force('y', d3.forceY(function(d){return scaleAreaY(d.type)}).strength(1))
@@ -332,7 +528,8 @@ d3.selectAll('.btn').on('click', function(){
 		}
 
 		else if (selection =='4'){
-
+			d3.selectAll('.labels').classed('hide',true)
+d3.selectAll('.labels2').classed('hide',true)
 			simulation1
 			//.force('x',d3.forceX().strength(.4))
 			//.force('y', d3.forceY(function(d) {return scaleProject(d.projectNum)}).strength(1))
@@ -346,18 +543,27 @@ d3.selectAll('.btn').on('click', function(){
 		}
 
 		else if (selection =='5'){
+			d3.selectAll('.labels').classed('hide',true)
+		 d3.selectAll('.funders').classed('hide',false)
+d3.selectAll('.labels2').classed('hide',true)
 
 			simulation1
 			.force('r',null)
-			.force('x',d3.forceX(function(d) {return scaleFunder(d.funder)}).strength(.5))
-			.force('y', d3.forceY().strength(.3))
-			.velocityDecay(.5)
-			.alpha(.2)
+			.force('x',d3.forceX(function(d) {return scaleFunder(d.funder)}).strength(.7))
+			.force('y', d3.forceY().strength(.4))
+			.velocityDecay(.6)
+			.alpha(.5)
 			.restart()
 
 		}
 
 		else if (selection =='6'){
+			d3.selectAll('.labels').classed('hide',true)
+		  	d3.selectAll('.longLabels').classed('hide',false)
+		  	d3.selectAll('.lines').classed('hide',false)
+		  	d3.selectAll('.moneyLabels').classed('hide',false)
+		  	d3.selectAll('.labels2').classed('hide',true)
+
 
 			simulation1
 			.force('r',null)
@@ -407,7 +613,7 @@ console.log(starterX);
 		projectNum: +d.ProjectID_num,
 		//x: starterX +Math.random()*5,
 		// x: width/2 +Math.random()*5,
-		r:5,
+		r:4,
 		// y: height/2 + Math.random()*5,
 		funded: d.AgencyName,
 		xPlace: +d.X_place,

@@ -24,8 +24,8 @@ body{
 
 
 .container .canvas{
-	margin-left:10%;
-	margin-right:10%;
+	margin-left:5%;
+	margin-right:5%;
 	height: 8000px;
 
 }
@@ -35,16 +35,43 @@ body{
     height:200px;
     position: relative;
     float:left;
-    background: blue;
-    border: solid 1px white;
+
 }
+
+.leftSide{
+	width:35%;
+	position:relative;
+	float:left;
+	padding-top:20px;
+}
+
+.rightSide{
+	width:40%;
+		position:relative;
+	float:left;
+	  padding-top:50px;
+
+}
+
+.farRightSide{
+	width:10%;
+		position:relative;
+	float:right;
+	  padding-top:50px;
+
+}
+
+.hide{
+	display:none;
+}
+
 
 .multAxis{
   font-family: 'Helvetica Neue';
   font-size:.8em;
   font-weight:200;
   fill:rgb(75,75,75);
-  stroke:none;
+
 }
 
 
@@ -59,13 +86,38 @@ body{
   }
 
 
-/*.domain{
+.domain{
     fill:none;
 }
-*/
+
 .labels{
 	font-family:'helvetica', sans-serif;
-	font-size:6px;
+	font-size:10px;
+}
+
+
+
+.labels2{
+	font-family:'publico',sans-serif;
+	font-size:16px;
+    font-weight:bold;
+    fill:#80ced6;
+}
+
+.PublicService{
+	fill:#272d64;
+}
+.Infrastructure{
+	fill:#d3262f;
+}
+
+.CommunityDev{
+	fill:#b18828;
+}
+
+
+.moneyLabels{
+	fill: rgba(45,45,45,.7)!important;
 }
 
 .btn{
@@ -100,3 +152,45 @@ body{
 }
 
 
+}
+
+
+
+
+
+
+
+/* ---------fonts------------ */
+
+body{
+	font-family:'publico', sans-serif;
+	font-weight: 50;
+	font-size:14px;
+	background:rgb(253,253,253);
+}
+h1,h2,h3,h4{
+	margin:0 0 10px;
+}
+
+h2{
+	font-weight:bold;
+}
+
+h1{
+	font-family:'publico', sans-serif;
+	font-size:32px;
+	font-weight:normal;
+}
+
+
+
+@font-face{
+	font-family:Publico;
+	font-weight:normal;
+	src:url("./assets/fonts/publico/PublicoText-Roman-Web.woff");
+}
+@font-face{
+	font-family:Publico;
+	font-weight:bold;
+	src:url("./assets/fonts/publico/PublicoText-Bold-Web.woff");
+}
