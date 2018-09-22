@@ -168,10 +168,8 @@ var scaleAreaX = d3.scaleLinear().domain([1,7])
 var scaleAreaY = d3.scaleLinear().domain([1,4])
 .range([height*-.02,height*.02])
 
-var scaleDist = d3.scaleLinear().domain([0,1800000])
-.range([width*-.35,width*.5])
 
-var scaleDist = d3.scaleLinear().domain([0,1800000])
+var scaleDist = d3.scaleLinear().domain([0,2000000])
 .range([width*-.35,width*.5])
 
 
@@ -342,23 +340,40 @@ d3.csv('data/funding_breakOut.csv',parse).then(function(data){
 
 
 
-var histoAxis = d3.axisBottom(scaleDist);
+var longAxis = d3.axisRight(scaleFunded)
+	.tickSize(width)
 
 plot.append('g')
-	.attr('class','labels axisHist')
+	.attr('class','labels longLabels')
+	.attr('transform', 'translate ('+-width*.40+',0)')
+	.call(customYAxis)
+
+
+function customYAxis(g) {
+  g.call(longAxis);
+  g.select(".domain").remove();
+  g.selectAll("line").attr("stroke", "#777").attr("stroke-dasharray", "2,2");
+  g.selectAll(".tick text").attr("x", -70).attr("dy", -25);
+}
+
+var histoAxis = d3.axisBottom(scaleDist);
+
+
+var axisPlotting = plot.append('g')
+	.attr('class','labels axisHist ')
 	.attr('transform', 'translate (0,'+height*.023+')')
 	.call(histoAxis)
 
-plot.selectAll('.lines')
-	.data(data)
-	.enter()
-	.append('rect')
-	.attr('class','labels lines')
-	.attr('x', width*-.5)
-	.attr('y',function(d){return scaleFunded(d.funded)+2})
-	.attr('height',1)
-	.attr('width',width)
-	.attr('fill','rgba(154,154,154,.1')
+// plot.selectAll('.lines')
+// 	.data(data)
+// 	.enter()
+// 	.append('rect')
+// 	.attr('class','labels lines')
+// 	.attr('x', width*-.5)
+// 	.attr('y',function(d){return scaleFunded(d.funded)+2})
+// 	.attr('height',1)
+// 	.attr('width',width)
+// 	.attr('fill','rgba(154,154,154,.1')
 
 
 
@@ -387,14 +402,14 @@ var moneyLabel = grouping.append('text')
 
 
 
-var texting = plot.selectAll('.longLabels')
-	.data(data)
-	.enter()
-	.append('text')
-	.attr('class','labels longLabels')
-	.text(function(d){return d.funded})
-	.attr('x', width*-.5)
-	.attr('y',function(d){return scaleFunded(d.funded)})
+// var texting = plot.selectAll('.longLabels')
+// 	.data(data)
+// 	.enter()
+// 	.append('text')
+// 	.attr('class','labels longLabels')
+// 	.text(function(d){return d.funded})
+// 	.attr('x', width*-.5)
+// 	.attr('y',function(d){return scaleFunded(d.funded)})
 d3.selectAll('.labels').classed('hide',true);
 
 plotting.transition()
@@ -427,6 +442,51 @@ function ticked(){
 		})
 }
 
+
+//  var rescale = plot.append('svg')
+//         .attr('width',200)
+//         .attr('height',400)
+//         //.attr('class','btn scaleButton hide')
+//         .attr('fill','blue')
+//         .html('<div class="button scaleButton hide"><a href="#" class="btn" id="RS">Rescale</a></div>')
+
+
+//  rescale.append('text')
+//          .attr('x',200)
+//         .attr('y',height*.03)
+//         .text('Rescale')
+//         .attr('class','btn scaleButton hide')
+
+var scaleNow =1;
+
+d3.select('.scaleButton').on('click',function(){
+
+	console.log('test')
+
+console.log(scaleNow);
+if(scaleNow==1){
+	scaleDist.domain([0,200000])
+	scaleNow =2;
+	console.log('first')
+}
+
+else {
+	scaleDist.domain([0,2000000])
+	scaleNow=1;
+}
+
+console.log(scaleNow);
+
+axisPlotting.transition().duration(500)
+	.call(histoAxis)
+
+simulation1
+	.force('x',d3.forceX(function(d) {return scaleDist(d.money)}).strength(5))
+			.alpha(.4)
+			.velocityDecay(.8)
+			.restart()
+
+})
 
 
 
@@ -472,6 +532,8 @@ d3.selectAll('.btn').on('click', function(){
 		}
 		else if (selection == '1'){
 
+			d3.selectAll('.scaleButton').classed('hide',true)
+
 			d3.selectAll('.labels').classed('hide',true)
 		  	d3.selectAll('.programs').classed('hide',false)
 		  	d3.selectAll('.labels2').classed('hide',true)
@@ -487,6 +549,9 @@ d3.selectAll('.btn').on('click', function(){
 		}
 		else if (selection =='2'){
 
+			d3.selectAll('.scaleButton').classed('hide',false)
+
+
 			d3.selectAll('.labels').classed('hide',true)
 		    d3.selectAll('.axisHist').classed('hide',false)
 		    d3.selectAll('.labels2').classed('hide',true)
@@ -499,9 +564,9 @@ d3.selectAll('.btn').on('click', function(){
 		simulation1
 			.force('collide', d3.forceCollide(5))
 			.force('r',null)
-			.force('x',d3.forceX(function(d) {return scaleDist(d.money)}).strength(1))
-			.force('y', d3.forceY().strength(.3))
-			.velocityDecay(.5)
+			.force('x',d3.forceX(function(d) {return scaleDist(d.money)}).strength(7))
+			.force('y', d3.forceY().strength(.5))
+			.velocityDecay(.6)
 			.alpha(.5)
 			.restart()
 
@@ -509,6 +574,9 @@ d3.selectAll('.btn').on('click', function(){
 
 		else if (selection =='3'){
 
+			d3.selectAll('.scaleButton').classed('hide',false)
+
+
 			d3.selectAll('.labels').classed('hide',true)
 		    d3.selectAll('.axisHist').classed('hide',false)
 		    d3.selectAll('.labels2').classed('hide',true)
@@ -519,7 +587,7 @@ d3.selectAll('.btn').on('click', function(){
 		simulation1
 			.force('collide', d3.forceCollide(5))
 			.force('r',null)
-			.force('x',d3.forceX(function(d) {return scaleDist(d.money)}).strength(.7))
+			.force('x',d3.forceX(function(d) {return scaleDist(d.money)}).strength(7))
 			.force('y', d3.forceY(function(d){return scaleAreaY(d.type)}).strength(1))
 			.velocityDecay(.5)
 			.alpha(.2)
@@ -528,6 +596,8 @@ d3.selectAll('.btn').on('click', function(){
 		}
 
 		else if (selection =='4'){
+
+			d3.selectAll('.scaleButton').classed('hide',true)
 			d3.selectAll('.labels').classed('hide',true)
 d3.selectAll('.labels2').classed('hide',true)
 			simulation1
@@ -543,6 +613,8 @@ d3.selectAll('.labels2').classed('hide',true)
 		}
 
 		else if (selection =='5'){
+
+			d3.selectAll('.scaleButton').classed('hide',true)
 			d3.selectAll('.labels').classed('hide',true)
 		 d3.selectAll('.funders').classed('hide',false)
 d3.selectAll('.labels2').classed('hide',true)
@@ -558,6 +630,7 @@ d3.selectAll('.labels2').classed('hide',true)
 		}
 
 		else if (selection =='6'){
+			d3.selectAll('.scaleButton').classed('hide',true)
 			d3.selectAll('.labels').classed('hide',true)
 		  	d3.selectAll('.longLabels').classed('hide',false)
 		  	d3.selectAll('.lines').classed('hide',false)

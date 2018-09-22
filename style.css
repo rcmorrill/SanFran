@@ -46,10 +46,10 @@ body{
 }
 
 .rightSide{
-	width:40%;
+	width:30%;
 		position:relative;
 	float:left;
-	  padding-top:50px;
+	  padding-top:30px;
 
 }
 
@@ -57,9 +57,19 @@ body{
 	width:10%;
 		position:relative;
 	float:right;
-	  padding-top:50px;
+	  padding-top:30px;
 
 }
+
+
+
+.rescale{
+	width:10%;
+	position:relative;
+	float:left;
+	padding-top:10px;
+}
+
 
 .hide{
 	display:none;
