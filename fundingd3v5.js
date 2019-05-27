@@ -344,23 +344,21 @@ d3.csv('data/funding_breakOut.csv',parse).then(function(data){
 
  plot.append('text')
         .attr('x',width*-.5)
-        .attr('y', 16-height*.033+14)
-        .text('Community Dev.')
+        .attr('y', 0-height*.033+14)
+        .text(' Community Dev.')
         .attr('class',' hide CommunityDev labels4')
 
 plot.append('text')
         .attr('x',width*-.5)
-        .attr('y',32-height*.033+14)
-        .text('Infrastructure')
+        .attr('y',16-height*.033+14)
+        .text(' Infrastructure')
         .attr('class',' hide Infrastructure labels4')
 
  plot.append('text')
         .attr('x',width*-.5)
-        .attr('y',48-height*.033+14)
-        .text('Public Service')
+        .attr('y',32-height*.033+14)
+        .text(' Public Service')
         .attr('class',' hide PublicService labels4')
-
-
 
 
 
