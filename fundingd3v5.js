@@ -190,7 +190,7 @@ var scaleColor = d3.scaleOrdinal().domain([2,1,3]).range(['rgb(213,34,40','rgb(2
 //hard coded = not ideal
 
 plot.append('text')
-        .attr('x',scaleAreaX(.5))
+        .attr('x',scaleAreaX(.6))
         .attr('y',scaleAreaY(1.5))
         .text('Community Building / Planning').attr('class','labels programs')
 plot.append('text')
@@ -206,11 +206,11 @@ plot.append('text')
         .attr('y',scaleAreaY(4.5))
         .text('Legal Services').attr('class','labels programs')
 plot.append('text')
-        .attr('x',scaleAreaX(1.5))
+        .attr('x',scaleAreaX(1.6))
         .attr('y',scaleAreaY(1.5))
         .text('Organizational Capacity Building').attr('class','labels programs')
 plot.append('text')
-        .attr('x',scaleAreaX(1.5))
+        .attr('x',scaleAreaX(1.6))
         .attr('y',scaleAreaY(2.5))
         .text('Housing Development Grants').attr('class','labels programs')
 plot.append('text')
@@ -218,7 +218,7 @@ plot.append('text')
         .attr('y',scaleAreaY(3.5))
         .text('Eviction Prevention').attr('class','labels programs')
 plot.append('text')
-        .attr('x',scaleAreaX(1.5))
+        .attr('x',scaleAreaX(1.6))
         .attr('y',scaleAreaY(4.5))
         .text('Neighborhood & Business Coord.').attr('class','labels programs')
 plot.append('text')
@@ -226,7 +226,7 @@ plot.append('text')
         .attr('y',scaleAreaY(3.5))
         .text('Financial Counseling Pilot').attr('class','labels programs')
 plot.append('text')
-        .attr('x',scaleAreaX(2.7))
+        .attr('x',scaleAreaX(2.75))
         .attr('y',scaleAreaY(4.5))
         .text('Service Connection').attr('class','labels programs')
 plot.append('text')
@@ -234,7 +234,7 @@ plot.append('text')
         .attr('y',scaleAreaY(3.5))
         .text('Financial Education').attr('class','labels programs')
 plot.append('text')
-        .attr('x',scaleAreaX(3.5))
+        .attr('x',scaleAreaX(3.55))
         .attr('y',scaleAreaY(4.5))
         .text('Supportive Housing for PLWHA').attr('class','labels programs')
 plot.append('text')
@@ -242,19 +242,19 @@ plot.append('text')
         .attr('y',scaleAreaY(3.5))
         .text('Foundational Competencies').attr('class','labels programs')
 plot.append('text')
-        .attr('x',scaleAreaX(4.5))
+        .attr('x',scaleAreaX(4.6))
         .attr('y',scaleAreaY(4.5))
         .text('Sustainable Homeownership').attr('class','labels programs')
 plot.append('text')
-        .attr('x',scaleAreaX(5.8))
+        .attr('x',scaleAreaX(5.75))
         .attr('y',scaleAreaY(3.5))
         .text('Homeless Services').attr('class','labels programs')
 plot.append('text')
-        .attr('x',scaleAreaX(5.5))
+        .attr('x',scaleAreaX(5.6))
         .attr('y',scaleAreaY(4.5))
         .text('Transitional Housing & Services').attr('class','labels programs')
  plot.append('text')
-        .attr('x',scaleAreaX(6.5))
+        .attr('x',scaleAreaX(6.6))
         .attr('y',scaleAreaY(3.5))
         .text('Housing Place-Based Services').attr('class','labels programs')       
 
@@ -270,37 +270,37 @@ var scaleFunderLabels = d3.scaleLinear().domain([1,7])
 
  plot.append('text')
         .attr('x',scaleFunderLabels(1))
-        .attr('y',height*.02)
+        .attr('y',height*-.025)
         .text('General Fund').attr('class','labels funders') 
 
 plot.append('text')
 	    .attr('x',scaleFunderLabels(2))
-	    .attr('y',height*.02)
+	    .attr('y',height*-.025)
 	    .text('HOPWA').attr('class','labels funders')        
 
  plot.append('text')
         .attr('x',scaleFunderLabels(3))
-        .attr('y',height*.02)
+        .attr('y',height*-.025)
         .text('Housing Trust Fund').attr('class','labels funders') 
 
 plot.append('text')
 	    .attr('x',scaleFunderLabels(4))
-	    .attr('y',height*.02)
+	    .attr('y',height*-.025)
 	    .text('CDBG').attr('class','labels funders')
 
  plot.append('text')
         .attr('x',scaleFunderLabels(5))
-        .attr('y',height*.02)
+        .attr('y',height*-.025)
         .text('ESG').attr('class','labels funders') 
 
 plot.append('text')
 	    .attr('x',scaleFunderLabels(6))
-	    .attr('y',height*.02)
+	    .attr('y',height*-.025)
 	    .text('SOMA').attr('class','labels funders')
 
 plot.append('text')
 	    .attr('x',scaleFunderLabels(7))
-	    .attr('y',height*.02)
+	    .attr('y',height*-.025)
 	    .text('Other').attr('class','labels funders')
 
 
@@ -338,6 +338,50 @@ var simulation1 = d3.forceSimulation()
 
 d3.csv('data/funding_breakOut.csv',parse).then(function(data){
 
+
+
+//primary legend
+
+ plot.append('text')
+        .attr('x',width*-.5)
+        .attr('y', 16-height*.033+14)
+        .text('Community Dev.')
+        .attr('class',' hide CommunityDev labels4')
+
+plot.append('text')
+        .attr('x',width*-.5)
+        .attr('y',32-height*.033+14)
+        .text('Infrastructure')
+        .attr('class',' hide Infrastructure labels4')
+
+ plot.append('text')
+        .attr('x',width*-.5)
+        .attr('y',48-height*.033+14)
+        .text('Public Service')
+        .attr('class',' hide PublicService labels4')
+
+
+
+
+
+//in context legend
+ plot.append('text')
+        .attr('x',width*-.5)
+        .attr('y',(function(d){return scaleAreaY(3)}))
+        .text('Public Service')
+        .attr('class','hide PublicService labels3')
+
+ plot.append('text')
+        .attr('x',width*-.5)
+        .attr('y',(function(d){return scaleAreaY(2)}))
+        .text('Infrastructure')
+        .attr('class','hide Infrastructure labels3')
+
+ plot.append('text')
+        .attr('x',width*-.5)
+        .attr('y',(function(d){return scaleAreaY(1)}))
+        .text('Community Dev.')
+        .attr('class','hide CommunityDev labels3')
 
 
 var longAxis = d3.axisRight(scaleFunded)
@@ -457,11 +501,14 @@ function ticked(){
 //         .text('Rescale')
 //         .attr('class','btn scaleButton hide')
 
+
+
+
 var scaleNow =1;
 
-d3.select('.scaleButton').on('click',function(){
+d3.select('.theScale').on('click',function(){
 
-	console.log('test')
+	console.log('test2')
 
 console.log(scaleNow);
 if(scaleNow==1){
@@ -489,8 +536,7 @@ simulation1
 })
 
 
-
-d3.selectAll('.btn').on('click', function(){
+d3.selectAll('.btn2').on('click', function(){
     var selection = d3.select(this).attr('id');
 
 		  if (selection == 'encode'){
@@ -530,13 +576,29 @@ d3.selectAll('.btn').on('click', function(){
 
 
 		}
-		else if (selection == '1'){
+		})
+
+
+
+d3.selectAll('.btn').on('click', function(){
+    var selection = d3.select(this).attr('id');
+
+    d3.selectAll('.btn').classed('active',false)
+
+    d3.select(this).classed('active',true)
+
+
+		 if (selection == '1'){
 
 			d3.selectAll('.scaleButton').classed('hide',true)
+
 
 			d3.selectAll('.labels').classed('hide',true)
 		  	d3.selectAll('.programs').classed('hide',false)
 		  	d3.selectAll('.labels2').classed('hide',true)
+			d3.selectAll('.labels3').classed('hide',false)
+					    d3.selectAll('.labels4').classed('hide',true)
+
 
 			simulation1
 			.force('r',null)
@@ -555,6 +617,11 @@ d3.selectAll('.btn').on('click', function(){
 			d3.selectAll('.labels').classed('hide',true)
 		    d3.selectAll('.axisHist').classed('hide',false)
 		    d3.selectAll('.labels2').classed('hide',true)
+		    d3.selectAll('.labels3').classed('hide',true)
+		    d3.selectAll('.labels4').classed('hide',false)
+
+
+
 
 
 			d3.select('#same').classed('hide',true)
@@ -574,7 +641,7 @@ d3.selectAll('.btn').on('click', function(){
 
 		else if (selection =='3'){
 
-			d3.selectAll('.scaleButton').classed('hide',false)
+			//d3.selectAll('.scaleButton').classed('hide',false)
 
 
 			d3.selectAll('.labels').classed('hide',true)
@@ -582,6 +649,10 @@ d3.selectAll('.btn').on('click', function(){
 		    d3.selectAll('.labels2').classed('hide',true)
 			d3.select('#same').classed('hide',true)
 			d3.select('#encode').classed('hide',false)
+			d3.selectAll('.labels3').classed('hide',false)
+					    d3.selectAll('.labels4').classed('hide',true)
+
+
 			plotting.transition()
 				.attr('r',4)
 		simulation1
@@ -599,6 +670,10 @@ d3.selectAll('.btn').on('click', function(){
 
 			d3.selectAll('.scaleButton').classed('hide',true)
 			d3.selectAll('.labels').classed('hide',true)
+			d3.selectAll('.labels3').classed('hide',true)
+			d3.selectAll('.labels4').classed('hide',false)
+
+
 d3.selectAll('.labels2').classed('hide',true)
 			simulation1
 			//.force('x',d3.forceX().strength(.4))
@@ -616,13 +691,17 @@ d3.selectAll('.labels2').classed('hide',true)
 
 			d3.selectAll('.scaleButton').classed('hide',true)
 			d3.selectAll('.labels').classed('hide',true)
-		 d3.selectAll('.funders').classed('hide',false)
+		    d3.selectAll('.funders').classed('hide',false)
+		 	d3.selectAll('.labels3').classed('hide',true)
+				    d3.selectAll('.labels4').classed('hide',false)
+
+
 d3.selectAll('.labels2').classed('hide',true)
 
 			simulation1
 			.force('r',null)
 			.force('x',d3.forceX(function(d) {return scaleFunder(d.funder)}).strength(.7))
-			.force('y', d3.forceY().strength(.4))
+			.force('y', d3.forceY(function(d){return scaleAreaY(1.5)}).strength(.4))
 			.velocityDecay(.6)
 			.alpha(.5)
 			.restart()
@@ -632,10 +711,15 @@ d3.selectAll('.labels2').classed('hide',true)
 		else if (selection =='6'){
 			d3.selectAll('.scaleButton').classed('hide',true)
 			d3.selectAll('.labels').classed('hide',true)
+			d3.selectAll('.funders').classed('hide',false)
 		  	d3.selectAll('.longLabels').classed('hide',false)
 		  	d3.selectAll('.lines').classed('hide',false)
 		  	d3.selectAll('.moneyLabels').classed('hide',false)
 		  	d3.selectAll('.labels2').classed('hide',true)
+		  	d3.selectAll('.labels3').classed('hide',true)
+		  	d3.selectAll('.labels4').classed('hide',false)
+
+
 
 
 			simulation1

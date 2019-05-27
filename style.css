@@ -24,10 +24,21 @@ body{
 
 
 .container .canvas{
+/*	margin-left:5%;*/
+	margin-right:5%;
+/*	margin-top:15%;*/
+	height: 8000px;
+	width:100%;
+	position:relative;
+	float:left;
+	z-index:1;
+
+}
+.container{
 	margin-left:5%;
 	margin-right:5%;
+	margin-top:1%;
 	height: 8000px;
-
 }
 
 .smallPlot{
@@ -43,13 +54,27 @@ body{
 	position:relative;
 	float:left;
 	padding-top:20px;
-}
+/*	background-color:yellow;
+*/}
 
 .rightSide{
-	width:30%;
+	width:15%;
 		position:relative;
 	float:left;
-	  padding-top:30px;
+	  padding-top:20px;
+/*	  background-color: blue;
+*/
+}
+
+.centerRightSide{
+	width:25%;
+		position:relative;
+	float:left;
+		height:110px;
+	  padding-top:20px;
+/*	  background-color:yellow;
+*/	  padding-left:4%;
+	  border-left: solid gray 1px;
 
 }
 
@@ -58,16 +83,23 @@ body{
 		position:relative;
 	float:right;
 	  padding-top:30px;
-
+/*	  background-color:red;
+*/
 }
 
-
-
-.rescale{
-	width:10%;
+#RS{
+	margin-top:40%;
 	position:relative;
 	float:left;
-	padding-top:10px;
+	z-index:2000;
+	margin-left:250px;
+	border: solid gray 1px;
+}
+
+.rescale{
+	width:70%;
+	position:relative;
+	float:left;
 }
 
 
@@ -134,8 +166,9 @@ a{
 }
 
 .btn{
-	border: solid rgb(48,55,67) 1px;
-	width: auto;
+/*	border: solid rgb(48,55,67) 1px;*/
+border: none;
+	width: 150px;
 	color:rgb(48,55,67) ;
 	padding:5px 5px 5px 5px;
 	font-family:sans-serif;
@@ -151,7 +184,7 @@ a{
 	text-decoration:none;
 }
 
-.btn:active{
+.btn:active, .active{
 	background-color:rgb(48,55,67);
 	color:rgb(254,254,254);
 	text-decoration:none;
@@ -165,12 +198,25 @@ a{
 }
 
 
+
+.btn2{
+/*	border: solid rgb(48,55,67) 1px;*/
+border: none;
+	width: 150px;
+	color:rgb(48,55,67) ;
+	padding:5px 5px 5px 5px;
+	font-family:sans-serif;
+	margin:3px 3px 3px 3px;
+	position:relative;
+	float:left;
+	margin-top:1%;
+	text-decoration:none;
 }
 
-
-
-
-
+.btn2:hover{
+	background-color:rgb(208,215,227);
+	text-decoration:none;
+}
 
 
 /* ---------fonts------------ */
@@ -179,8 +225,8 @@ body{
 	font-family:'publico', sans-serif;
 	font-weight: 50;
 	font-size:14px;
-	background:rgb(253,253,253);
-}
+/*	background:rgb(253,253,253);
+*/}
 h1,h2,h3,h4{
 	margin:0 0 10px;
 }
